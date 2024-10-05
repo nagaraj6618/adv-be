@@ -17,4 +17,24 @@ async function getAllQuestionData (req,res){
    })
 }
 
-module.exports = {getAllQuestionData}
+async function addNewQuestion (req,res) {
+   const {question,answer} = req.body;
+   if(!question || !answer) {
+      return res.status(404).json({
+         message:"Please provide question or answer..",
+         status:false
+      })
+   }
+   const newData = await questionModel({
+      question,answer
+   });
+   // console.log(newData);
+   newData.save();
+   res.status(200).json({
+      message:"Question added successfull...",
+      status:true,
+      data:newData
+   })
+}
+
+module.exports = {getAllQuestionData,addNewQuestion}
