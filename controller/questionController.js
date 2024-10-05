@@ -10,10 +10,14 @@ async function getAllQuestionData (req,res){
          data:allData
       })
    }
+   const filteredData = allData.map(item => ({
+      question: item.question,
+      answer: item.answer
+   }));
    res.status(200).json({
       message:"All the question data retrived...",
       status:true,
-      data:allData,
+      data:filteredData
    })
 }
 
