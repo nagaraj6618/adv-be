@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-const { getAllQuestionData, addNewQuestion } = require('./controller/questionController');
+const { getAllQuestionData, addNewQuestion, deleteQuestionById } = require('./controller/questionController');
 
 const port = 8088;
 const app = express();
@@ -24,7 +24,8 @@ app.get('/api/v1',(req,res) => {
 })
 
 app.get('/api/v1/question',getAllQuestionData)
-app.post('/api/v1/question' ,addNewQuestion)
+app.post('/api/v1/question' ,addNewQuestion);
+app.delete('/api/v1/question/:id',deleteQuestionById);
 
 
 app.listen(port,() => console.log("Server started..."))
